@@ -1,0 +1,26 @@
+// ignore_for_file: prefer_const_constructors
+import 'package:flutter/material.dart';
+
+class NewsPage extends StatefulWidget {
+  const NewsPage({Key? key}) : super(key: key);
+
+  @override
+  State<NewsPage> createState() => _NewsPageState();
+}
+
+class _NewsPageState extends State<NewsPage> {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Color.fromRGBO(15, 19, 21, 1),
+        body: Center(
+            child: Text(
+          'No Notification',
+          style: TextStyle(
+              color: Colors.white, fontSize: 15),
+        )),
+      ),
+    );
+  }
+}
