@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../comm/comHelper.dart';
 import '../../databaseHandler/dbHelper.dart';
 import '../../environments.dart';
-import '../../model/user_model.dart';
+import '../../model/model.dart';
 import '../others/template.dart';
 import '../others/welcome.dart';
 
@@ -207,7 +207,7 @@ class _LoginPageState extends State<LoginPage> {
                             backgroundColor:
                                 MaterialStateProperty.all(Colors.orange),
                             minimumSize:
-                                MaterialStateProperty.all(Size(250, 40)),
+                                MaterialStateProperty.all(Size(MediaQuery.of(context).size.width/2, MediaQuery.of(context).size.width/10)),
                           ),
                           child: Text(
                             'Sign In',

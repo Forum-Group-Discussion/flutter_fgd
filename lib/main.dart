@@ -4,10 +4,18 @@ import 'package:capstone_flutter/screen/others/template.dart';
 import 'package:capstone_flutter/screen/others/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:math' as math;
 
+import 'cubit/contact_cubit.dart';
+
 void main() {
-  runApp(MyApp());
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider(create: (_) => DataCubit()),
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatefulWidget {
