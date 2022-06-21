@@ -44,6 +44,12 @@ dependencies:
   flutter_profile_picture: ^2.0.0
   salomon_bottom_bar: ^3.3.1
   animated_splash_screen: ^1.2.0
+  intl: ^0.17.0
+  file_picker: ^4.5.1
+  open_file: ^3.2.1
+  flutter_bloc: ^8.0.1
+  equatable: ^2.0.3
+  image_picker: ^0.8.5+3
 
 dev_dependencies:
   flutter_test:
@@ -73,7 +79,7 @@ flutter:
   assets:
     - images/bgijoo.png
     - images/anim.gif
-    - images/mascot.png
+    - images/hiasan1.png
     - images/logofound.png
     - images/namefound.png
 

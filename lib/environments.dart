@@ -3,31 +3,37 @@
 import 'package:flutter/material.dart';
 
 class CardStatistik extends StatelessWidget {
-  CardStatistik({Key? key, required this.tema}) : super(key: key);
-  String tema;
+  const CardStatistik({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(5),
-      height: 50,
-      width: 100,
-      child: InkWell(
-        onTap: () {},
-        child: Card(
-          // color: Color.fromRGBO(22, 28, 34, 1),
-          color: Colors.orange,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          child: Center(
-            child: Text(tema,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold)),
+    return Column(
+      children: [
+        InkWell(
+          onTap: () {},
+          child: Container(
+            margin: EdgeInsets.all(5),
+            height: 70,
+            width: 70,
+            decoration: BoxDecoration(
+                color: Color.fromARGB(255, 218, 218, 218),
+                border: Border.all(
+                  color: Colors.white,
+                  width: 3,
+                ),
+                borderRadius: BorderRadius.circular(60)),
+            child: Center(
+              child: Image.network(
+                  'https://cdn140.picsart.com/297361716279211.png'),
+            ),
           ),
         ),
-      ),
+        Text(
+          'Username',
+          style: TextStyle(
+              color: Colors.white, fontSize: 12, fontWeight: FontWeight.w400),
+        )
+      ],
     );
   }
 }

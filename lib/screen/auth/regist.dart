@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../../comm/comHelper.dart';
 import '../../databaseHandler/dbHelper.dart';
 import '../../environments.dart';
-import '../../model/user_model.dart';
+import '../../model/model.dart';
 import '../others/welcome.dart';
 
 class RegistPage extends StatefulWidget {
@@ -245,7 +245,7 @@ class _RegistPageState extends State<RegistPage> {
                     onPressed: signUp,
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.orange),
-                      minimumSize: MaterialStateProperty.all(Size(250, 40)),
+                      minimumSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.width/2, MediaQuery.of(context).size.width/10)),
                     ),
                     child: Text(
                       'Sign Up',

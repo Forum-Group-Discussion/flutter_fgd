@@ -1,10 +1,11 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, library_private_types_in_public_api
 
-import 'package:capstone_flutter/screen/others/profile.dart';
+import 'package:capstone_flutter/screen/mvp/post.dart';
+import 'package:capstone_flutter/screen/others/notif.dart';
+import 'package:capstone_flutter/screen/others/profil.dart';
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-import '../../environments.dart';
 import '../mvp/detail.dart';
 import '../mvp/home.dart';
 import '../news/news.dart';
@@ -22,8 +23,9 @@ class _TemplatePageState extends State<TemplatePage> {
   static final List<Widget> _widgetOptions = <Widget>[
     HomePage(),
     DetailPage(),
+    PostPage(),
     NewsPage(),
-    ProfilePage()
+    ProfilPage()
   ];
 
   void _onItemTapped(int index) {
@@ -37,12 +39,18 @@ class _TemplatePageState extends State<TemplatePage> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(15, 19, 21, 1),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Image.asset(
           "images/namefound.png",
           height: 100,
           width: 100,
         ),
         backgroundColor: Color.fromRGBO(15, 19, 21, 1),
+        actions: [
+          IconButton(onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => NotifPage()));
+          }, icon: Icon(Icons.notifications_none))
+        ],
       ),
       body: _widgetOptions.elementAt(_currentIndex),
       bottomNavigationBar: SalomonBottomBar(
@@ -52,31 +60,39 @@ class _TemplatePageState extends State<TemplatePage> {
           /// Beranda
           SalomonBottomBarItem(
             icon: Icon(Icons.home),
-            title: Text("Beranda"),
+            title: Text("Home"),
             unselectedColor: Colors.white,
             selectedColor: Colors.purple,
           ),
 
           /// Peringkat
           SalomonBottomBarItem(
-            icon: Icon(Icons.star),
-            title: Text("Peringkat"),
+            icon: Icon(Icons.whatshot_sharp),
+            title: Text("Trending"),
             unselectedColor: Colors.white,
-            selectedColor: Colors.orange,
+            selectedColor: Colors.red,
+          ),
+
+          /// Post
+          SalomonBottomBarItem(
+            icon: Icon(Icons.add_circle_outlined),
+            title: Text("Post"),
+            unselectedColor: Colors.white,
+            selectedColor: Colors.blue,
           ),
 
           /// Notif
           SalomonBottomBarItem(
-            icon: Icon(Icons.notifications),
-            title: Text("Notifikasi"),
+            icon: Icon(Icons.turned_in_sharp),
+            title: Text("Saved"),
             unselectedColor: Colors.white,
-            selectedColor: Colors.pink,
+            selectedColor: Colors.orange,
           ),
 
           /// Profil
           SalomonBottomBarItem(
             icon: Icon(Icons.person),
-            title: Text("Profil"),
+            title: Text("Profile"),
             unselectedColor: Colors.white,
             selectedColor: Colors.teal,
           ),
