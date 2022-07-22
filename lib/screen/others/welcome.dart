@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables
 
-import 'package:capstone_flutter/screen/auth/login.dart';
-import 'package:capstone_flutter/screen/auth/regist.dart';
+import 'package:capstone_flutter/screen/auth/login_screen.dart';
+import 'package:capstone_flutter/screen/auth/registration_screen.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -15,10 +15,10 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Center(
-        child: Scaffold(
-          backgroundColor: Colors.blue,
-          body: Column(
+      child: Scaffold(
+        backgroundColor: Colors.blue,
+        body: Center(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(

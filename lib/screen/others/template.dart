@@ -3,12 +3,11 @@
 import 'package:capstone_flutter/screen/mvp/post.dart';
 import 'package:capstone_flutter/screen/others/notif.dart';
 import 'package:capstone_flutter/screen/others/profil.dart';
+import 'package:capstone_flutter/screen/others/saved.dart';
 import 'package:flutter/material.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-import '../mvp/detail.dart';
+import '../mvp/trend.dart';
 import '../mvp/home.dart';
-import '../news/news.dart';
 
 class TemplatePage extends StatefulWidget {
   const TemplatePage({Key? key}) : super(key: key);
@@ -24,7 +23,7 @@ class _TemplatePageState extends State<TemplatePage> {
     HomePage(),
     DetailPage(),
     PostPage(),
-    NewsPage(),
+    SavedPage(),
     ProfilPage()
   ];
 
@@ -37,67 +36,44 @@ class _TemplatePageState extends State<TemplatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(15, 19, 21, 1),
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Image.asset(
-          "images/namefound.png",
-          height: 100,
-          width: 100,
-        ),
         backgroundColor: Color.fromRGBO(15, 19, 21, 1),
-        actions: [
-          IconButton(onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => NotifPage()));
-          }, icon: Icon(Icons.notifications_none))
-        ],
-      ),
-      body: _widgetOptions.elementAt(_currentIndex),
-      bottomNavigationBar: SalomonBottomBar(
-        currentIndex: _currentIndex,
-        onTap: _onItemTapped,
-        items: [
-          /// Beranda
-          SalomonBottomBarItem(
-            icon: Icon(Icons.home),
-            title: Text("Home"),
-            unselectedColor: Colors.white,
-            selectedColor: Colors.purple,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: Image.asset(
+            "images/namefound.png",
+            height: 100,
+            width: 100,
           ),
-
-          /// Peringkat
-          SalomonBottomBarItem(
-            icon: Icon(Icons.whatshot_sharp),
-            title: Text("Trending"),
-            unselectedColor: Colors.white,
-            selectedColor: Colors.red,
-          ),
-
-          /// Post
-          SalomonBottomBarItem(
-            icon: Icon(Icons.add_circle_outlined),
-            title: Text("Post"),
-            unselectedColor: Colors.white,
-            selectedColor: Colors.blue,
-          ),
-
-          /// Notif
-          SalomonBottomBarItem(
-            icon: Icon(Icons.turned_in_sharp),
-            title: Text("Saved"),
-            unselectedColor: Colors.white,
-            selectedColor: Colors.orange,
-          ),
-
-          /// Profil
-          SalomonBottomBarItem(
-            icon: Icon(Icons.person),
-            title: Text("Profile"),
-            unselectedColor: Colors.white,
-            selectedColor: Colors.teal,
-          ),
-        ],
-      ),
-    );
+          backgroundColor: Color.fromRGBO(15, 19, 21, 1),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => NotifPage()));
+                },
+                icon: Icon(Icons.notifications_none))
+          ],
+        ),
+        body: _widgetOptions.elementAt(_currentIndex),
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(
+                backgroundColor: Color.fromRGBO(15, 19, 21, 1),
+                icon: Icon(Icons.home),
+                label: ''),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.whatshot_sharp), label: ''),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.add_circle_outlined), label: ''),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.turned_in_sharp), label: ''),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+          ],
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          currentIndex: _currentIndex,
+          selectedItemColor: Colors.amber[800],
+          onTap: _onItemTapped,
+        ));
   }
 }

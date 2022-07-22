@@ -27,47 +27,27 @@ class UserModel {
 
 class CThread {
   String caption;
-  String publish;
 
   CThread({
     required this.caption,
-    required this.publish
   });
 
-  Map<String, dynamic> toJson() => {
-    'caption' : caption,  'publish' : publish
-  };
+  Map<String, dynamic> toJson() => {'caption': caption};
 
-  CThread.fromjson(Map<String, dynamic> json)  
-  : caption = json['caption'], publish = json['photo'];
+  CThread.fromjson(Map<String, dynamic> json) : caption = json['caption'];
 
   static Map<String, dynamic> toMap(CThread cThread) => {
-    'caption' : cThread.caption,
-    'publish' : cThread.publish
-  };
+        'caption': cThread.caption,
+      };
 
   static String encode(List<CThread> cThread) => json.encode(
-    cThread
-      .map<Map<String, dynamic>>((cThread) => CThread.toMap(cThread))
-      .toList(),
-  );
+        cThread
+            .map<Map<String, dynamic>>((cThread) => CThread.toMap(cThread))
+            .toList(),
+      );
 
-  static List<CThread> decode(String cThread) => 
-    (json.decode(cThread) as List<dynamic>)
-      .map<CThread>((item) => CThread.fromjson(item))
-      .toList();
+  static List<CThread> decode(String cThread) =>
+      (json.decode(cThread) as List<dynamic>)
+          .map<CThread>((item) => CThread.fromjson(item))
+          .toList();
 }
-
-// @JsonSerializable()
-// class AuthModel {
-//   String email;
-//   String name;
-//   String password;
-
-//   AuthModel({required this.email, required this.name, required this.password});
-
-//   factory AuthModel.fromJson(Map<String, dynamic> json) =>
-//       _$AuthModelFromJson(json);
-
-//   Map<String, dynamic> toJson() => _$AuthModelToJson(this);
-// }

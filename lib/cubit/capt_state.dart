@@ -1,4 +1,4 @@
-part of 'contact_cubit.dart';
+part of 'capt_cubit.dart';
 
 class DataState extends Equatable {
   final List<CThread> listThread;

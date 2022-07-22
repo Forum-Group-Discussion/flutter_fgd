@@ -50,6 +50,7 @@ dependencies:
   flutter_bloc: ^8.0.1
   equatable: ^2.0.3
   image_picker: ^0.8.5+3
+  comment_tree: ^0.3.0
 
 dev_dependencies:
   flutter_test:
@@ -77,8 +78,6 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/bgijoo.png
-    - images/anim.gif
     - images/hiasan1.png
     - images/logofound.png
     - images/namefound.png
