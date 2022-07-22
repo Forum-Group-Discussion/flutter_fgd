@@ -1,12 +1,11 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, must_be_immutable
 
 import 'dart:io';
-import 'package:capstone_flutter/cubit/contact_cubit.dart';
+import 'package:capstone_flutter/cubit/capt_cubit.dart';
 import 'package:capstone_flutter/model/model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 
 import '../others/template.dart';
 
@@ -18,21 +17,19 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
-  DateTime _dueDate = DateTime.now();
-  final currentDate = DateTime.now();
   File? file;
 
   var formKey = GlobalKey<FormState>();
-  final _publishTextController = TextEditingController();
   final _captionTextController = TextEditingController();
+  final _titleTextController = TextEditingController();
 
   String publish = '';
   String caption = '';
 
   @override
   void dispose() {
-    _publishTextController.dispose();
     _captionTextController.dispose();
+    _titleTextController.dispose();
     super.dispose();
   }
 
@@ -49,8 +46,47 @@ class _PostPageState extends State<PostPage> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Choose Topic',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              height: 2,
+                              color: Colors.white),
+                        ),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              ChooseT(
+                                nTopic: "Games",
+                              ),
+                              ChooseT(
+                                nTopic: "Education",
+                              ),
+                              ChooseT(
+                                nTopic: "Food",
+                              ),
+                              ChooseT(
+                                nTopic: "Travel",
+                              ),
+                              ChooseT(
+                                nTopic: "Healthy",
+                              ),
+                              ChooseT(
+                                nTopic: "Etc",
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                     SizedBox(
-                      height: 200,
+                      height: 15,
+                    ),
+                    SizedBox(
                       width: double.infinity,
                       child: Column(
                         children: [
@@ -62,22 +98,7 @@ class _PostPageState extends State<PostPage> {
                                   fit: BoxFit.cover,
                                 )
                               : Center(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Colors.white,
-                                        width: 2,
-                                      ),
-                                    ),
-                                    height: 200,
-                                    width: double.infinity,
-                                    alignment: Alignment.center,
-                                    child: Text('No Photo',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            height: 2,
-                                            color: Colors.white)),
-                                  ),
+                                  child: Container(),
                                 )
                         ],
                       ),
@@ -86,10 +107,6 @@ class _PostPageState extends State<PostPage> {
                     const SizedBox(
                       height: 15,
                     ),
-                    // widgetPublistAt(context),
-                    // const SizedBox(
-                    //   height: 15,
-                    // ),
                     widgetCaption(),
                     const SizedBox(
                       height: 20,
@@ -106,8 +123,7 @@ class _PostPageState extends State<PostPage> {
                         if (!formKey.currentState!.validate()) return;
 
                         formKey.currentState!.save();
-                        final threadBaru =
-                            CThread(caption: caption, publish: publish);
+                        final threadBaru = CThread(caption: caption);
 
                         context.read<DataCubit>().tambahData(threadBaru);
 
@@ -131,7 +147,7 @@ class _PostPageState extends State<PostPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Cover',
+          'Add Image',
           style: TextStyle(
               fontWeight: FontWeight.bold, height: 2, color: Colors.white),
         ),
@@ -141,65 +157,14 @@ class _PostPageState extends State<PostPage> {
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.orange),
               minimumSize: MaterialStateProperty.all(Size(
-                  MediaQuery.of(context).size.width / 2,
-                  MediaQuery.of(context).size.width / 10)),
+                  MediaQuery.of(context).size.width / 0.5,
+                  MediaQuery.of(context).size.width / 10.0)),
             ),
             onPressed: () {
               _pickFile();
             },
-            child: const Text('Add Photo'),
+            child: const Text('Choose Image'),
           ),
-        ),
-      ],
-    );
-  }
-
-  Widget widgetPublistAt(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Publish At',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, height: 2, color: Colors.white),
-        ),
-        TextField(
-          controller: _publishTextController,
-          focusNode: AlwaysDisabledFocusNode(),
-          style: TextStyle(color: Colors.white),
-          decoration: InputDecoration(
-            hintText: 'dd/mm/yyyy',
-            hintStyle: TextStyle(color: Colors.grey),
-            border: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.white),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.white, width: 2),
-            ),
-            focusedBorder:
-                OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-          ),
-          onChanged: (String value) {
-            publish = value;
-          },
-          onTap: () async {
-            final selectDate = await showDatePicker(
-              context: context,
-              initialDate: currentDate,
-              firstDate: DateTime(1990),
-              lastDate: DateTime(currentDate.year + 5),
-            );
-            setState(() {
-              if (selectDate != null) {
-                _dueDate = selectDate;
-                _publishTextController
-                  ..text = DateFormat('dd/MM/yyyy').format(_dueDate)
-                  ..selection = TextSelection.fromPosition(TextPosition(
-                      offset: _publishTextController.text.length,
-                      affinity: TextAffinity.upstream));
-              }
-            });
-          },
         ),
       ],
     );
@@ -218,7 +183,7 @@ class _PostPageState extends State<PostPage> {
           controller: _captionTextController,
           style: TextStyle(color: Colors.white),
           decoration: InputDecoration(
-            hintText: 'Add title...',
+            hintText: 'Start a new message',
             hintStyle: TextStyle(color: Colors.grey),
             border: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.white),
@@ -232,8 +197,7 @@ class _PostPageState extends State<PostPage> {
           onChanged: (String value) {
             caption = value;
           },
-          minLines:
-              6, // any number you need (It works as the rows for the textarea)
+          minLines: 6,
           keyboardType: TextInputType.multiline,
           maxLines: 6,
         ),
@@ -249,7 +213,37 @@ class _PostPageState extends State<PostPage> {
       });
     }
   }
+}
 
+class ChooseT extends StatelessWidget {
+  ChooseT({Key? key, required this.nTopic}) : super(key: key);
+
+  String nTopic;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+        child: SizedBox(
+          width: 100,
+          child: ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.white),
+              minimumSize: MaterialStateProperty.all(Size(
+                  MediaQuery.of(context).size.width,
+                  MediaQuery.of(context).size.width / 10.0)),
+            ),
+            onPressed: () {},
+            child: Text(
+              nTopic,
+              style: TextStyle(color: Colors.orange),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class AlwaysDisabledFocusNode extends FocusNode {

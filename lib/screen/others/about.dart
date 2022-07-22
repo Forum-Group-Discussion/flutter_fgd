@@ -16,8 +16,8 @@ class _AboutPageState extends State<AboutPage> {
       child: Scaffold(
         backgroundColor: Color.fromRGBO(15, 19, 21, 1),
         appBar: AppBar(
-          title: Text('Tentang Komunitas'),
-           backgroundColor: Color.fromRGBO(15, 19, 21, 1),
+          title: Text('About Comunity'),
+          backgroundColor: Color.fromRGBO(15, 19, 21, 1),
         ),
         body: Center(
           child: Column(
@@ -38,7 +38,7 @@ class _AboutPageState extends State<AboutPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '   COIN-19 adalah aplikasi yang menginformasikan seputar Covid-19 di Indonesia berupa statistika, data terkini, dan informasi lainnya.',
+                          '   Found adalah sebuah platform dimana semua orang bisa mengeluarkan opini dan pendapat mereka tentang berbagai hal seperti pendidikan, teknologi, dan lainnya yang mana nantinya akan di diskusikan dengan orang lain.',
                           style: TextStyle(color: Colors.white),
                           textAlign: TextAlign.justify,
                         ),
@@ -46,7 +46,7 @@ class _AboutPageState extends State<AboutPage> {
                           height: 10,
                         ),
                         Text(
-                          '   Pada saat ini Covid-19 masih menyebar dan masih memakan banyak korban. Banyak yang sudah mulai terlena akan pentingnya mengikuti protokol kesehatan. Salah satu alasan orang-orang sudah mulai terlena itu dikarenakan ketidaksadarannya mereka dengan Covid-19 yang nampaknya mulai tidak ada. Karena itu dibutuhkan suatu aplikasi sebagai pengingat agar masyarakat dapat selalu tahu dengan kondisi Covid-19 saat ini.',
+                          '   Platform ini terinspirasi dari Kaskus, Twitter, dan Instagram yang mana salah satu fitur utamanya adalah Post a Thread, yaitu mengunggah sesuatu seperti foto ataupun tulisan yang nantinya dapat di diskusikan bersama para pengguna lainnya. Para pengguna juga bisa menyimpan Thread orang lain agar tidak ketinggalan dengan bahasan yang sedang mereka diskusikan.',
                           style: TextStyle(color: Colors.white),
                           textAlign: TextAlign.justify,
                         ),
@@ -54,7 +54,7 @@ class _AboutPageState extends State<AboutPage> {
                           height: 10,
                         ),
                         Text(
-                          '   COIN-19 berupakan suatu aplikasi yang dibutuhkan masyarakat untuk dapat selalu tahu statistika dan berita terkini seputar Covid-19. COIN-19 dapat memberikan data terkini berupa total kasus yang ada di Indonesia dan juga total kasus di masing-masing Provinsinya. COIN-19 dapat memberikan berita terkini seputar Covid-19.',
+                          '   Diharapkan dengan platform ini dapat membantu para pengguna untuk mengungkapkan pendapat mereka agar dapat didiskusikan bersama dengan baik. Dan apabila terdapat Thread yang tidak pantas, pihak admin akan memberikan peringatan terhadap orang yang membuatnya. Karena itu platform ini aman dan nyaman untuk digunakan.',
                           style: TextStyle(color: Colors.white),
                           textAlign: TextAlign.justify,
                         ),
